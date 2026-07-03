@@ -7,6 +7,11 @@
 Watch a MOSFET evolve from **45 nm → 14 nm → 7 nm → 3 nm → 1 nm → sub‑1 nm**,
 and *see* why smaller nodes work… and why they eventually fail.
 
+## 🔴 [**▶ Try the live demo →**](https://jhakartik376.github.io/nanoscale-lab/)
+
+<sub>Runs entirely in your browser — the physics engine is ported to TypeScript, so no install and no backend needed.</sub>
+
+[![Live Demo](https://img.shields.io/badge/live%20demo-online-brightgreen?logo=github&logoColor=white)](https://jhakartik376.github.io/nanoscale-lab/)
 [![CI](https://github.com/JhaKartik376/nanoscale-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/JhaKartik376/nanoscale-lab/actions/workflows/ci.yml)
 ![status](https://img.shields.io/badge/status-working%20end--to--end-brightgreen)
 ![python](https://img.shields.io/badge/backend-FastAPI%20%2B%20NumPy%2FSciPy-3776AB?logo=python&logoColor=white)
@@ -66,6 +71,9 @@ An **accuracy toggle** (low → high) trades speed for grid resolution.
 ---
 
 ## 🚀 Quick start
+
+### 0 · Just try it — no install
+👉 **[jhakartik376.github.io/nanoscale-lab](https://jhakartik376.github.io/nanoscale-lab/)** — the full simulator, physics running client‑side.
 
 ### 1 · Backend — FastAPI + NumPy/SciPy
 ```bash
