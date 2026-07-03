@@ -1,4 +1,9 @@
 import type { SimState, SimResult, Series } from '../types';
+import { simulateLocal, localChat } from './localEngine';
+
+// LOCAL mode: physics runs client-side (no backend). Enabled for the static
+// GitHub Pages demo via VITE_LOCAL=1 at build time.
+const LOCAL = import.meta.env.VITE_LOCAL === '1';
 
 // Base URL for the FastAPI backend. Default hits localhost:8000 (CORS is
 // allowed there); set VITE_API_URL="" to use the same-origin Vite proxy. (fix #7)
@@ -11,6 +16,7 @@ export async function fetchSimulate(
   s: SimState,
   signal?: AbortSignal,
 ): Promise<SimResult> {
+  if (LOCAL) return simulateLocal(s); // in-browser physics, no network
   const body = {
     node: s.node,
     mode: s.mode === 'auto' ? undefined : s.mode, // omit -> backend default (fix #2)
@@ -38,6 +44,7 @@ export async function fetchChat(
   material: string,
   question: string,
 ): Promise<{ source: string; answer: string }> {
+  if (LOCAL) return localChat(node, material); // grounded rule-based, no LLM
   const r = await fetch(`${API_BASE}/chat`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
