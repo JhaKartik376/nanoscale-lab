@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import type {
   NodeId,
   ModeChoice,
@@ -7,6 +7,7 @@ import type {
   Accuracy,
   SimState,
 } from './types';
+import { readUrlState, writeUrlState } from './lib/urlState';
 import { useSimulation } from './hooks/useSimulation';
 import { NodeScalingSlider, NODE_LG } from './components/NodeScalingSlider';
 import { ModeToggle } from './components/ModeToggle';
@@ -26,16 +27,23 @@ const SWEEP_TITLE: Record<Sweep, string> = {
 };
 
 export default function App() {
-  const [node, setNode] = useState<NodeId>('7nm');
-  const [mode, setMode] = useState<ModeChoice>('auto');
-  const [sweep, setSweep] = useState<Sweep>('idvg');
-  const [material, setMaterial] = useState<Material>('Si');
-  const [accuracy, setAccuracy] = useState<Accuracy>('medium');
+  const init = readUrlState(); // hydrate controls from the URL (shareable links)
+  const [node, setNode] = useState<NodeId>(init.node);
+  const [mode, setMode] = useState<ModeChoice>(init.mode);
+  const [sweep, setSweep] = useState<Sweep>(init.sweep);
+  const [material, setMaterial] = useState<Material>(init.material);
+  const [accuracy, setAccuracy] = useState<Accuracy>(init.accuracy);
 
   const sim: SimState = useMemo(
     () => ({ node, mode, sweep, material, accuracy, vd: 0.7, vg: 0.7 }),
     [node, mode, sweep, material, accuracy],
   );
+
+  // keep the URL in sync so the current view is copy-pasteable
+  useEffect(() => {
+    writeUrlState({ node, mode, sweep, material, accuracy } as SimState);
+  }, [node, mode, sweep, material, accuracy]);
+
   const { data, loading, error } = useSimulation(sim);
 
   return (

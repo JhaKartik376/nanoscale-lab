@@ -1,0 +1,15 @@
+# One-click full-stack deploy (backend + bundled frontend) on Render.
+# Click the "Deploy to Render" button in the README, connect this repo, and
+# Render reads this blueprint automatically.
+services:
+  - type: web
+    name: nanoscale-lab
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      # Optional: set this in the Render dashboard to enable the Claude chat
+      # tutor. Without it, the tutor gracefully falls back to the rule engine.
+      - key: ANTHROPIC_API_KEY
+        sync: false

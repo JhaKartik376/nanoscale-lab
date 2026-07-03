@@ -21,9 +21,11 @@ and *see* why smaller nodes work… and why they eventually fail.
 
 <br/>
 
-<img src="docs/screenshot.png" alt="NanoScale Lab UI" width="90%"/>
+<img src="docs/demo.gif" alt="NanoScale Lab walkthrough — 45nm classical to sub-1nm quantum breakdown, plus graphene" width="92%"/>
 
-<sub>Physics‑inspired, not TCAD. Runs on a normal laptop — no GPU, no HPC.</sub>
+<sub>45 nm (clean switch) → 7 nm → 1 nm (quantum breakdown) → leakage → tunneling → graphene. Physics‑inspired, not TCAD.</sub>
+
+<sub>Every view is a shareable deep‑link, e.g. <a href="https://jhakartik376.github.io/nanoscale-lab/?node=3nm&material=Graphene&sweep=idvg">?node=3nm&material=Graphene</a>.</sub>
 
 </div>
 
@@ -102,6 +104,23 @@ python physics/classical_model.py     # Poisson Vbi = 0.8334 V · SS 70/75 mV/de
 python physics/quantum_correction.py  # leakage rises 10× from 7→3 nm
 python physics/tunneling_model.py     # WKB · well levels · ballistic on/off
 python tests/smoke_test.py            # 28 end-to-end endpoint checks → ALL PASS
+```
+
+---
+
+## 🌍 Deploy your own (full-stack, with the AI tutor)
+
+The [live demo](https://jhakartik376.github.io/nanoscale-lab/) runs **client-side** (physics in the browser, rule-based tutor). To run the **full stack** — the Python physics backend **+ the Claude-powered chat tutor** — deploy the single container to a free host:
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/JhaKartik376/nanoscale-lab)
+
+1. Click the button and connect this repo — Render reads `render.yaml` and builds the root `Dockerfile` (frontend + FastAPI, one service).
+2. *(Optional)* add an `ANTHROPIC_API_KEY` env var to enable the Claude tutor; without it, the tutor falls back to the grounded rule engine.
+
+Or run the exact same container locally:
+```bash
+docker build -t nanoscale-lab .
+docker run -p 8000:8000 -e ANTHROPIC_API_KEY=sk-... nanoscale-lab   # http://localhost:8000
 ```
 
 ---
