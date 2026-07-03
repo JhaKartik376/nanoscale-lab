@@ -1,0 +1,4 @@
+-r requirements.txt
+# test-only deps
+httpx>=0.27          # required by fastapi.testclient.TestClient
+pytest>=8.0

@@ -7,6 +7,7 @@
 Watch a MOSFET evolve from **45 nm → 14 nm → 7 nm → 3 nm → 1 nm → sub‑1 nm**,
 and *see* why smaller nodes work… and why they eventually fail.
 
+[![CI](https://github.com/JhaKartik376/nanoscale-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/JhaKartik376/nanoscale-lab/actions/workflows/ci.yml)
 ![status](https://img.shields.io/badge/status-working%20end--to--end-brightgreen)
 ![python](https://img.shields.io/badge/backend-FastAPI%20%2B%20NumPy%2FSciPy-3776AB?logo=python&logoColor=white)
 ![react](https://img.shields.io/badge/frontend-React%20%2B%20Vite%20%2B%20Tailwind-06B6D4?logo=react&logoColor=white)
