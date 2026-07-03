@@ -1,6 +1,6 @@
 <div align="center">
 
-# ⚛️ NanoScale Lab
+# NanoScale Lab
 
 ### An interactive lab to explore the future — and the limits — of transistor scaling.
 
